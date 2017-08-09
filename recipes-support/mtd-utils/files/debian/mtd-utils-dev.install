@@ -5,4 +5,5 @@ libscan.a usr/lib/arm-linux-gnueabihf/
 libubi.a usr/lib/arm-linux-gnueabihf/
 libubigen.a usr/lib/arm-linux-gnueabihf/
 include/libmtd.h usr/include/mtd
+include/libubi.h usr/include/mtd
 include/mtd/* usr/include/mtd
