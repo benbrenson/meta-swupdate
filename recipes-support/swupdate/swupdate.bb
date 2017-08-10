@@ -7,7 +7,7 @@ LICENSE = "gpl2"
 inherit dpkg debianize
 
 DEPENDS += "mtd-utils"
-DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev mtd-utils-dev libubootenv"
+DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev mtd-utils-dev libarchive-dev libubootenv"
 
 URL="git://github.com/sbabic/swupdate.git"
 BRANCH="master"
@@ -18,6 +18,7 @@ SRC_DIR = "git"
 SRC_URI += "${URL};branch=${BRANCH};tag=${TAG};protocol=https \
             file://debian \
             file://defconfig \
+            file://sw-description-${MACHINE} \
            "
 
 SECTION = "utils"
