@@ -23,12 +23,28 @@ SRC_URI += "${URL};branch=${BRANCH};tag=${TAG};protocol=https \
 
 SECTION = "utils"
 PRIORITY = "optional"
-
+SWUPDATE_HWREVISION = "${MACHINE} ${IMAGE_REVISION}"
 
 # When running do_build in qemu chroot context, installing
 # mtd-utils-dev will overwrite files of package 'linux-libc-dev:armhf'
 # For now overwrite them.
 APT_EXTRA_OPTS = "-o Dpkg::Options::=--force-overwrite"
+
+
+# Checking for SWUPDATE_HWREVISION
+python() {
+	hwrevision = d.getVar('IMAGE_REVISION', True) or ""
+	if len(hwrevision) == 0:
+		bb.fatal('IMAGE_REVISION not set, please do that in local.conf!')
+}
+
+
+
+do_pre_install_append() {
+	install -m 0644 ${EXTRACTDIR}/sw-description-${MACHINE} ${DEPLOY_DIR_IMAGE}/sw-description.${DATETIME}-${MACHINE}
+	ln -s ${DEPLOY_DIR_IMAGE}/sw-description.${DATETIME}-${MACHINE} sw-description
+}
+
 
 ###                              ###
 ### debianize makefile functions ###
@@ -68,8 +84,11 @@ debianize_install() {
 	dh_testroot
 	dh_clean  -k
 
+	install -m 755 -d debian/${BPN}/etc
 	install -m 755 -d debian/${BPN}/sbin
+
 	install -m 755 swupdate debian/${BPN}/sbin
+	echo "${SWUPDATE_HWREVISION}" > debian/${BPN}/etc/hwrevision
 }
 
 

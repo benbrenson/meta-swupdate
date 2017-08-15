@@ -1,6 +1,7 @@
 FILESPATH_prepend := "${THISDIR}/files:"
 
-FW_ENV_nanopi-cactus = "fw_env.config.sunxi"
+FW_ENV = "fw_env.config.sunxi"
+
 SRC_URI += "\
            file://${FW_ENV} \
            "
