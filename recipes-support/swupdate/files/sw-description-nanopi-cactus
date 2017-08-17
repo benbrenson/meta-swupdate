@@ -2,7 +2,7 @@ software =
 {
     version = "0.1";
 
-    hardware-compatibility = [ "revA" ];
+    hardware-compatibility = [ "0.1" ];
     /* differentiate running image modes/sets */
 
     stable:
@@ -12,31 +12,19 @@ software =
             images: (
             {
                 filename = "isar-image-base.ext4";
-                device = "/dev/mmcblk0p3";
+                device = "/dev/mmcblk0p2";
             }
             );
-            /*uboot: (
-            {
-                name = "bootpart";
-                value = "0:2";
-            }
-            );*/
         };
 
         alt:
         {
             images: (
             {
-                filename = "rootfs.ext3";
+                filename = "isar-image-base.ext4";
                 device = "/dev/mmcblk0p3";
             }
             );
-            /*uboot: (
-            {
-                name = "bootpart";
-                value = "0:1";
-            }
-            );*/
         };
     };
 }

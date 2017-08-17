@@ -7,7 +7,7 @@ LICENSE = "gpl2"
 inherit dpkg debianize
 
 DEPENDS += "mtd-utils"
-DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev mtd-utils-dev libarchive-dev libubootenv"
+DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev mtd-utils-dev libarchive-dev libubootenv python3-wget"
 
 URL="git://github.com/sbabic/swupdate.git"
 BRANCH="master"
@@ -31,11 +31,16 @@ SWUPDATE_HWREVISION = "${MACHINE} ${IMAGE_REVISION}"
 APT_EXTRA_OPTS = "-o Dpkg::Options::=--force-overwrite"
 
 
-# Checking for SWUPDATE_HWREVISION
+# Checking for required variables
 python() {
 	hwrevision = d.getVar('IMAGE_REVISION', True) or ""
+
 	if len(hwrevision) == 0:
 		bb.fatal('IMAGE_REVISION not set, please do that in local.conf!')
+
+
+	if len(hwrevision.split('.')) > 2:
+		bb.fatal('IMAGE_REVISION is not correctly set. Syntax: <major>.<minor>')
 }
 
 

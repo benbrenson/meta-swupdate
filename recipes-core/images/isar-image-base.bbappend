@@ -1,7 +1,7 @@
 IMAGE_INSTALL_append = " swupdate "
 
 do_image_swupdate() {
-    bbwarn "Generating swu file!"
+    bbwarn "Generating swu file for swupdate!"
     FILES="sw-description ${PN}.ext4"
 
     cd ${DEPLOY_DIR_IMAGE}
