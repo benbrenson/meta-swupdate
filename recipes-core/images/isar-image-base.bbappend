@@ -8,7 +8,7 @@ do_image_swupdate() {
     for i in $FILES;do
         echo $i;done | cpio -ovL -H crc >  ${PN}.${DATETIME}.swu
 
-    ln -s ${PN}.${DATETIME}.swu ${PN}.swu
+    ln -sf ${PN}.${DATETIME}.swu ${PN}.swu
 
 }
 addtask do_image_swupdate after do_image before do_build
