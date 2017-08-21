@@ -7,7 +7,8 @@ LICENSE = "gpl2"
 inherit dpkg debianize
 
 DEPENDS += "mtd-utils"
-DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev mtd-utils-dev libarchive-dev libubootenv python3-wget"
+DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev mtd-utils-dev libarchive-dev libubootenv"
+
 
 URL="git://github.com/sbabic/swupdate.git"
 BRANCH="master"
@@ -47,7 +48,7 @@ python() {
 
 do_pre_install_append() {
 	install -m 0644 ${EXTRACTDIR}/sw-description-${MACHINE} ${DEPLOY_DIR_IMAGE}/sw-description.${DATETIME}-${MACHINE}
-	ln -s ${DEPLOY_DIR_IMAGE}/sw-description.${DATETIME}-${MACHINE} sw-description
+	ln -sf ${DEPLOY_DIR_IMAGE}/sw-description.${DATETIME}-${MACHINE} sw-description
 }
 
 
@@ -58,7 +59,7 @@ debianize_build[target] = "build"
 debianize_build() {
 	@echo "Running build target."
 	cp ${PP}/defconfig ${PPS}/.config
-	make
+	make -j${PARALLEL_MAKE}
 }
 
 

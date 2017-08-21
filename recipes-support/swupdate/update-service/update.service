@@ -1,0 +1,9 @@
+[Unit]
+Description=Update service for embedded linux systems.
+After=network-online.target
+
+[Service]
+ExecStart=/sbin/update_service -v -c /etc/update/update.conf
+
+[Install]
+WantedBy=multi-user.target
