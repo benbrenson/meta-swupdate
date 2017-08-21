@@ -45,25 +45,6 @@ debianize_build() {
 }
 
 
-debianize_clean[target] = "clean"
-debianize_clean() {
-	@echo "Running clean target."
-	dh_auto_clean
-}
-
-
-debianize_build-arch[target] = "build-arch"
-debianize_build-arch() {
-	@echo "Running build-arch target."
-}
-
-
-debianize_build-indep[target] = "build-indep"
-debianize_build-indep() {
-	@echo "Running build-indep target."
-}
-
-
 debianize_install[target] = "install"
 debianize_install[tdeps] = "build"
 debianize_install() {
@@ -75,7 +56,6 @@ debianize_install() {
 	dh_auto_install
 	dh_install
 }
-
 
 
 debianize_binary-arch[target] = "binary-arch"
@@ -98,20 +78,6 @@ debianize_binary-arch() {
 	dh_gencontrol
 	dh_md5sums
 	dh_builddeb
-}
-
-
-debianize_binary-indep[target] = "binary-indep"
-debianize_binary-indep[tdeps] = "build install"
-debianize_binary-indep() {
-	@echo "Running binary-indep target."
-}
-
-
-debianize_binary[target] = "binary"
-debianize_binary[tdeps] = "binary-arch binary-indep"
-debianize_binary() {
-	@echo "Running binary target."
 }
 
 
