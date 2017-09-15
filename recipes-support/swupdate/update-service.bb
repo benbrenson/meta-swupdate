@@ -37,6 +37,17 @@ addtask do_generate_config after do_unpack before do_build
 ### debianize makefile functions ###
 ###                              ###
 
+# Nothing to do here...
+debianize_build() {
+	@echo "Running build target."
+}
+
+
+debianize_clean() {
+	@echo "Running clean target."
+	rm -rf debian/${BPN}
+}
+
 debianize_install[target] = "install"
 debianize_install[tdeps] = "build"
 debianize_install() {
