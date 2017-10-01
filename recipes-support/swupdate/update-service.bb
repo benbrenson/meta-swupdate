@@ -20,9 +20,25 @@ SRC_URI = "${URL};branch=${BRANCH};protocol=https \
 SECTION = "utils"
 PRIORITY = "optional"
 
-BROKER_IP ?= "192.168.8.1"
-BROKER_PORT ?= "4242"
-UPDATE_TOPIC ?= "cactus/dev/0a24871b-6eb0-47a3-a66b-a3ebca77e376-598b4e4460e570ea/device"
+BROKER_IP ?= ""
+BROKER_PORT ?= ""
+UPDATE_TOPIC ?= ""
+
+# Checking for required variables
+python() {
+	broker_ip = d.getVar('BROKER_IP', True) or ""
+	if len(broker_ip) == 0:
+		bb.fatal('BROKER_IP not set, please do that in local.conf!')
+
+	broker_port = d.getVar('BROKER_PORT', True) or ""
+	if len(broker_port) == 0:
+		bb.fatal('BROKER_PORT not set, please do that in local.conf!')
+
+	update_topic = d.getVar('UPDATE_TOPIC', True) or ""
+	if len(update_topic) == 0:
+		bb.fatal('UPDATE_TOPIC not set, please do that in local.conf!')
+}
+
 
 CFG="${EXTRACTDIR}/update.conf"
 #Generate the update.conf file
