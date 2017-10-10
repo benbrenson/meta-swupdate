@@ -6,12 +6,6 @@ SRC_URI += "\
            file://${FW_ENV} \
            "
 
-
-# Build fw_setenv/fw_printenv for the target
-debianize_build_append() {
-	${MAKE} env
-}
-
 debianize_install_append() {
 	mkdir -p debian/${BPN}/sbin
 	mkdir -p debian/${BPN}/etc
