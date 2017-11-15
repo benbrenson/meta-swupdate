@@ -4,7 +4,7 @@ LICENSE = "gpl"
 inherit dpkg debianize-python
 
 RDEPENDS += "python3-paho-mqtt"
-DEB_RDEPENDS += "python3-wget python3-configargparse"
+DEB_RDEPENDS += "python3-wget python3-configargparse unzip"
 
 URL = "git://git.pixel-group.de/siemens-ct/swupdate_python_daemon.git"
 BRANCH = "master"
