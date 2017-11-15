@@ -47,8 +47,9 @@ python() {
 
 
 do_pre_install_append() {
+	cd ${DEPLOY_DIR_IMAGE}
 	install -m 0644 ${EXTRACTDIR}/sw-description-${MACHINE} ${DEPLOY_DIR_IMAGE}/sw-description.${DATETIME}-${MACHINE}
-	ln -sf ${DEPLOY_DIR_IMAGE}/sw-description.${DATETIME}-${MACHINE} sw-description
+	ln -sf sw-description.${DATETIME}-${MACHINE} sw-description
 }
 
 
