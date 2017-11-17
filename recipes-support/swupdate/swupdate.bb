@@ -79,10 +79,10 @@ debianize_install() {
 
 	# Create a mapping for available root partitions in json format.
 	# Required for selecting the correct partition update, in case of A-B updates.
-	echo "{"                               >> debian/${BPN}/etc/update_partitions
-	echo "\"${ROOTDEV_PRIM}\" : \"main\"," >> debian/${BPN}/etc/update_partitions
-	echo "\"${ROOTDEV_SEC}\" : \"alt\""    >> debian/${BPN}/etc/update_partitions
-	echo "}"                               >> debian/${BPN}/etc/update_partitions
+	echo "{"                                                                    >> debian/${BPN}/etc/update_partitions
+	echo "\"${base_devdir}/${ROOT_DEVICE_LINUX}${ROOTP_PRIM_NUM}\" : \"main\"," >> debian/${BPN}/etc/update_partitions
+	echo "\"${base_devdir}/${ROOT_DEVICE_LINUX}${ROOTP_SEC_NUM}\"  : \"alt\""   >> debian/${BPN}/etc/update_partitions
+	echo "}"                                                                    >> debian/${BPN}/etc/update_partitions
 }
 
 
