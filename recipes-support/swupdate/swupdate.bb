@@ -6,9 +6,11 @@ LICENSE = "gpl2"
 
 inherit dpkg debianize
 
-DEPENDS += "mtd-utils"
-DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev mtd-utils-dev libarchive-dev libubootenv"
+DEPENDS += "mtd-utils-dev libubootenv"
+DEPENDS_class-cross += "mtd-utils-dev-cross libubootenv-cross"
 
+DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev libarchive-dev zlib1g-dev"
+DEB_DEPENDS_class-cross += "liblua5.2-dev-cross libconfig-dev-cross libjson-c-dev-cross libcurl4-gnutls-dev-cross libarchive-dev-cross zlib1g-dev-cross"
 
 URL="git://github.com/sbabic/swupdate.git"
 BRANCH="master"
@@ -30,6 +32,8 @@ SWUPDATE_HWREVISION = "${MACHINE} ${IMAGE_REVISION}"
 # For now overwrite them.
 APT_EXTRA_OPTS = "-o Dpkg::Options::=--force-overwrite"
 
+MAKE = "make -j${PARALLEL_MAKE}"
+MAKE_class-cross = "make CROSS_COMPILE=${TARGET_PREFIX}-"
 
 # Checking for required variables
 python() {
@@ -59,7 +63,7 @@ debianize_build[target] = "build"
 debianize_build() {
 	@echo "Running build target."
 	cp ${PP}/defconfig ${PPS}/.config
-	make -j${PARALLEL_MAKE}
+	${MAKE}
 }
 
 debianize_install[target] = "install"
@@ -87,5 +91,5 @@ debianize_install() {
 }
 
 
-
+BBCLASSEXTEND = "cross"
 
