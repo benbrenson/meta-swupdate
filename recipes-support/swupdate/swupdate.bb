@@ -19,7 +19,6 @@ SRC_DIR = "git"
 SRC_URI += "${URL};branch=${BRANCH};tag=${TAG};protocol=https \
             file://debian \
             file://defconfig \
-            file://sw-description-${MACHINE} \
            "
 
 SECTION = "utils"
