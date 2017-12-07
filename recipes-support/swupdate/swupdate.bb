@@ -6,11 +6,8 @@ LICENSE = "gpl2"
 
 inherit dpkg debianize
 
-DEPENDS += "mtd-utils-dev libubootenv"
-DEPENDS_class-cross += "mtd-utils-dev-cross libubootenv-cross"
-
-DEB_DEPENDS += "liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev libarchive-dev zlib1g-dev"
-DEB_DEPENDS_class-cross += "liblua5.2-dev-cross libconfig-dev-cross libjson-c-dev-cross libcurl4-gnutls-dev-cross libarchive-dev-cross zlib1g-dev-cross"
+DEPENDS_append = " mtd-utils-dev-cross libubootenv-cross "
+DEB_DEPENDS_append = " liblua5.2-dev libconfig-dev libjson-c-dev libcurl4-gnutls-dev libarchive-dev zlib1g-dev "
 
 URL="git://github.com/sbabic/swupdate.git"
 BRANCH="master"

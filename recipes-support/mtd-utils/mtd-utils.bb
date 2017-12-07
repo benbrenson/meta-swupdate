@@ -6,12 +6,8 @@ LICENSE = "gpl2"
 
 inherit dpkg debianize
 
-PROVIDES += "mtd-utils-dev"
-PROVIDES_class-native += "mtd-utils-dev-native"
-PROVIDES_class-cross += "mtd-utils-dev-cross"
-
-DEB_DEPENDS += "zlib1g-dev liblzo2-dev uuid-dev"
-DEB_DEPENDS_class-cross += "zlib1g-dev-cross liblzo2-dev-cross uuid-dev-cross"
+PROVIDES_append= "mtd-utils-dev"
+DEB_DEPENDS_append = "zlib1g-dev liblzo2-dev uuid-dev"
 
 BRANCH="master"
 SRCREV="454a3d0b1ac413de3c32e4076ba74fdc70a8e973"
